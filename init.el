@@ -1,9 +1,66 @@
-
+;; -*- lexical-binding: t -*-
 ;; Added by Package.el.  This must come before configurations of
 ;; installed packages.  Don't delete this line.  If you don't want it,
 ;; just comment it out by adding a semicolon to the start of the line.
 ;; You may delete these explanatory comments.
+;;(package-initialize)
+
+(require 'package)
+(setq package-archives
+      '(
+        ("gnu" . "https://elpa.gnu.org/packages/")
+        ("melpa" . "https://melpa.org/packages/")
+        ;;("melpa-stable" . "https://stable.melpa.org/packages/")
+	))
 (package-initialize)
+
+;;防止反复调用 package-refresh-contents 会影响加载速度
+(when (not package-archive-contents)
+  (package-refresh-contents))
+
+(package-install 'company)
+
+;;modeline上显示我的所有的按键和执行的命令
+(package-install 'keycast)
+(keycast-mode t)
+
+;; 增强 minibuffer 补全：vertico 和 Orderless
+(package-install 'vertico)
+(vertico-mode t)
+
+;; 无序搜索增强，配置 Marginalia 增强 minubuffer 的 annotation
+(package-install 'orderless)
+(setq completion-styles '(orderless))
+
+;; 不用进入变量，在minibuffer就可以预览变量值
+(package-install 'marginalia)
+(marginalia-mode t)
+
+(package-install 'embark)
+(global-set-key (kbd "<f8>") 'embark-act) ;; 告诉函数绑定的快捷键
+(setq prefix-help-command 'embark-prefix-help-command) ;; C-key C-h ...
+
+;; 找到描述变量，<f8>，根据提示选项操作
+
+;; 增强文件内搜索和跳转函数定义：Consult
+(package-install 'consult)
+;;replace swiper
+(global-set-key (kbd "C-s") 'consult-line)
+;;M-x consult-imenu
+(global-set-key (kbd "M-s i") 'consult-imenu)
+
+;;在文件最开头添加地个 文件作用域的变量设置，设置变量的绑定方式
+;; -*- lexical-binding: t -*-
+;;(let ((x 1))    ; x is lexically bound.
+;;  (+ x 3))
+;;     ⇒ 4
+
+;;(defun getx ()
+;;  x)            ; x is used free in this function.
+
+;;(let ((x 1))    ; x is lexically bound.
+;;  (getx))
+;;error→ Symbol's value as variable is void: x
 
 (global-linum-mode t)
 (setq inhibit-startup-screen t)
@@ -11,7 +68,7 @@
 
 (setq tab-always-indent 'complete) ;; 在编辑的时候也可以补全
 
-(icomplete-mode t) ;; 当按下 M-x 过一会儿会出现交互式的可选补全
+;;(icomplete-mode t) ;; 当按下 M-x 过一会儿会出现交互式的可选补全
 
 (setq name "geometryolife")
 
@@ -24,6 +81,7 @@
 (setq name "Joe")
 
 (global-set-key (kbd "C-d") 'help-command)
+(add-to-list 'help-event-list '4)
 
 (func)
 
@@ -72,12 +130,22 @@
 (global-set-key (kbd "C-h C-f") 'find-function)
 
 
+;; 更改显示字体大小 16pt
+;; http://stackoverflow.com/questions/294664/how-to-set-the-font-size-in-emacs
+;;(set-face-attribute 'default nil :height 160)
+
+;;让鼠标滚动更好用
+;;(setq mouse-wheel-scroll-amount '(1 ((shift) . 1) ((control) . nil)))
+;;(setq mouse-wheel-progressive-speed nil)
+
+
+
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(package-selected-packages (quote (company))))
+ '(package-selected-packages '(consult embark vertico keycast company)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
