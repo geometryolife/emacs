@@ -62,6 +62,7 @@
 ;;  (getx))
 ;;error→ Symbol's value as variable is void: x
 
+(setq ring-bell-function 'ignore)
 (global-linum-mode t)
 (setq inhibit-startup-screen t)
 ;;(server-mode t)
@@ -103,7 +104,8 @@
 ;;(scroll-bar-mode -1)
 
 ;; 更改光标的样式（不能生效，解决方案见第二集）
-;; (setq cursor-type 'hollow)
+;; (setq cursor-type 'hollow) ;; 缓冲区
+;; (setq-default cursor-type 'box) ;; 全局
 
 ;; 快速打开配置文件
 (defun open-init-file()
@@ -128,7 +130,11 @@
 
 
 (global-set-key (kbd "C-h C-f") 'find-function)
+(global-set-key (kbd "C-h C-v") 'find-variable)
+(global-set-key (kbd "C-h C-k") 'find-function-on-key)
 
+;; 关闭备份文件
+(setq make-backup-files nil)
 
 ;; 更改显示字体大小 16pt
 ;; http://stackoverflow.com/questions/294664/how-to-set-the-font-size-in-emacs
@@ -138,14 +144,65 @@
 ;;(setq mouse-wheel-scroll-amount '(1 ((shift) . 1) ((control) . nil)))
 ;;(setq mouse-wheel-progressive-speed nil)
 
+(show-paren-mode t)
 
+;; 开启 Tab
+(add-to-list 'load-path (expand-file-name "~/.emacs.d/awesome-tab"))
+(require 'awesome-tab)
+(awesome-tab-mode t)
+
+(defun awesome-tab-buffer-groups ()
+"`awesome-tab-buffer-groups' control buffers' group rules.
+Group awesome-tab with mode if buffer is derived from `eshell-mode' `emacs-lisp-mode' `dired-mode' `org-mode' `magit-mode'.
+All buffer name start with * will group to \"Emacs\".
+Other buffer group by `awesome-tab-get-group-name' with project name."
+(list
+(cond
+    ((or (string-equal "*" (substring (buffer-name) 0 1))
+	(memq major-mode '(magit-process-mode
+			    magit-status-mode
+			    magit-diff-mode
+			    magit-log-mode
+			    magit-file-mode
+			    magit-blob-mode
+			    magit-blame-mode)))
+    "Emacs")
+    ((derived-mode-p 'eshell-mode)
+    "EShell")
+    ((derived-mode-p 'dired-mode)
+    "Dired")
+    ((memq major-mode '(org-mode org-agenda-mode diary-mode))
+    "OrgMode")
+    ((derived-mode-p 'eaf-mode)
+    "EAF")
+    (t
+     (awesome-tab-get-group-name (current-buffer))))))
+
+;; 下面两行的效果完全相同的
+;; (quote foo)
+;; 'foo
+;; quote 的意思是不要执行后面的内容，返回它原本的内容（具体请参考下面的例子）
+;;(print '(+ 1 1)) ;; -> (+ 1 1)
+;;(print (+ 1 1))  ;; -> 2
+
+(require 'recentf)
+(recentf-mode 1)
+(setq recentf-max-menu-item 10)
+
+;; 这个快捷键绑定可以用之后的插件 counsel 代替
+;; (global-set-key (kbd "C-x C-r") 'recentf-open-files)
+
+(global-set-key (kbd "C-x b") 'consult-buffer)
+
+(delete-selection-mode t)
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(package-selected-packages '(consult embark vertico keycast company)))
+ '(package-selected-packages
+   '(marginalia orderless consult embark vertico keycast company)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
