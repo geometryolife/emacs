@@ -5,18 +5,10 @@
 ;; You may delete these explanatory comments.
 ;;(package-initialize)
 
-(require 'package)
-(setq package-archives
-      '(
-        ("gnu" . "https://elpa.gnu.org/packages/")
-        ("melpa" . "https://melpa.org/packages/")
-        ;;("melpa-stable" . "https://stable.melpa.org/packages/")
-	))
-(package-initialize)
+(add-to-list 'load-path "~/.emacs.d/lisp")
 
-;;防止反复调用 package-refresh-contents 会影响加载速度
-(when (not package-archive-contents)
-  (package-refresh-contents))
+(require 'init-elpa)
+(require 'init-org)
 
 (package-install 'company)
 
@@ -147,7 +139,7 @@
 (show-paren-mode t)
 
 ;; 开启 Tab
-(add-to-list 'load-path (expand-file-name "~/.emacs.d/awesome-tab"))
+(add-to-list 'load-path (expand-file-name "~/.emacs.d/elpa/awesome-tab"))
 (require 'awesome-tab)
 (awesome-tab-mode t)
 
@@ -196,16 +188,128 @@ Other buffer group by `awesome-tab-get-group-name' with project name."
 
 (delete-selection-mode t)
 
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(package-selected-packages
-   '(marginalia orderless consult embark vertico keycast company)))
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- )
+;; (shell-command-to-string "explorer.exe C:\\") ;; 打开C盘
+;; (shell-command-to-string "explorer.exe ~/.emacs.d")
+
+;;(shell-command-to-string
+;; (encode-coding-string
+;;  (replace-regexp-in-string "/" "\\\\"
+;;		(format "explorer.exe %s" (expand-file-name "~/.emacs.d")))
+;;  'gbk)) ;; 中文编码，适应中文目录
+
+(defun consult-directory-externally (file)
+  "Open FILE externally using the default application of the system."
+  (interactive "fOpen externally: ")
+  (if (and (eq system-type 'windows-nt)
+	   (fboundp 'w32-shell-execute))
+      (shell-command-to-string (encode-coding-string (replace-regexp-in-string "/" "\\\\"
+	    (format "explorer.exe %s" (file-name-directory (expand-file-name file)))) 'gbk))
+    (call-process (pcase system-type
+		    ('darwin "open")
+		    ('cygwin "cygstart")
+		    (_ "xdg-open"))
+		  nil 0 nil
+		  (file-name-directory (expand-file-name file)))))
+
+;;(define-key embark-file-map (kbd "E") #'consult-directory-externally)
+;;打开当前文件的目录
+(defun my-open-current-directory ()
+  (interactive)
+  (consult-directory-externally default-directory))
+
+;; grep < ack < ag < ripgrep(rg)
+;; 增强 embark 和 consult，批量搜索替换大杀器
+(package-install 'embark-consult)
+(package-install 'wgrep)
+(setq wgrep-auto-save-buffer t)
+
+(eval-after-load ;; 延迟加载
+    'consult ;; 加载完才执行下面的语句
+  '(eval-after-load
+       'embark
+     '(progn
+	(require 'embark-consult)
+	(add-hook ;; 希望在 embark-collect-mode 之后执行一个特定的功能，可以使用 add-hook
+	 'embark-collect-mode-hook
+	 #'consult-preview-at-point-mode))))
+
+(defun embark-export-write ()
+  "Export the current vertico results to a writable buffer if possible.
+Supports exporting consult-grep to wgrep, file to wdeired, and consult-location to occur-edit"
+  (interactive)
+  (require 'embark)
+  (require 'wgrep)
+  (pcase-let ((`(,type . ,candidates)
+               (run-hook-with-args-until-success 'embark-candidate-collectors)))
+    (pcase type
+      ('consult-grep (let ((embark-after-export-hook #'wgrep-change-to-wgrep-mode))
+                       (embark-export)))
+      ('file (let ((embark-after-export-hook #'wdired-change-to-wdired-mode))
+               (embark-export)))
+      ('consult-location (let ((embark-after-export-hook #'occur-edit-mode))
+                           (embark-export)))
+      (x (user-error "embark category %S doesn't support writable export" x)))))
+
+(define-key minibuffer-local-map (kbd "C-c C-e") 'embark-export-write)
+;; C-c C-e -> C-M-% query-replace-regexp
+
+;;使用ripgrep来进行搜索
+;;consult-ripgrep
+
+;;everyting
+;;consult-locate
+
+;; Encoding -> UTF-8 as the default coding system
+;;(when (fboundp 'set-charset-priority)
+;;  (set-charset-priority 'unicode))
+
+;;(reset-language-environment 'chinese-gbk)
+;;(prefer-coding-system 'utf-8-auto)
+
+;; 配置搜索中文
+(progn
+  (setq consult-locate-args (encode-coding-string "es.exe -i -p -r" 'gbk))
+  (add-to-list 'process-coding-system-alist '("es" gbk . gbk))
+  )
+(eval-after-load 'consult
+  (progn
+      (setq
+	consult-narrow-key "<"
+	consult-line-numbers-widen t
+	consult-async-min-input 2
+	consult-async-refresh-delay  0.15
+	consult-async-input-throttle 0.2
+	consult-async-input-debounce 0.1)
+    ))
+
+;; 使用拼音进行搜索
+;;(package-install 'pyim)
+;;
+;;(defun eh-orderless-regexp (orig_func component)
+;;    (let ((result (funcall orig_func component)))
+;;      (pyim-cregexp-build result)))
+;;
+;;
+;;  (defun toggle-chinese-search ()
+;;    (interactive)
+;;    (if (not (advice-member-p #'eh-orderless-regexp 'orderless-regexp))
+;;	;; advice-add 不修改已有函数的基础上，使用一个补丁
+;;	;; orderless-regexp 对文本过滤时，运用补丁——pyim来增强正则的拼音搜索
+;;	(advice-add 'orderless-regexp :around #'eh-orderless-regexp)
+;;      (advice-remove 'orderless-regexp #'eh-orderless-regexp)))
+;;
+;;  (defun disable-py-search (&optional args)
+;;    (if (advice-member-p #'eh-orderless-regexp 'orderless-regexp)
+;;	(advice-remove 'orderless-regexp #'eh-orderless-regexp)))
+;;
+;;  ;; (advice-add 'exit-minibuffer :after #'disable-py-search)
+;;  (add-hook 'minibuffer-exit-hook 'disable-py-search) ;; 退出时禁用，提高流畅性
+;;
+;;  (global-set-key (kbd "s-p") 'toggle-chinese-search) ;; 默认关闭，需要时打开
+
+(global-hl-line-mode t)
+(package-install 'monokai-theme)
+(load-theme 'monokai t)
+
+(setq custom-file (expand-file-name "~/.emacs.d/custom.el"))
+(load custom-file 'no-error 'no-message)
