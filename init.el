@@ -7,6 +7,7 @@
 
 (add-to-list 'load-path "~/.emacs.d/lisp")
 
+(require 'init-better-default)
 (require 'init-elpa)
 (require 'init-org)
 
@@ -54,9 +55,6 @@
 ;;  (getx))
 ;;error→ Symbol's value as variable is void: x
 
-(setq ring-bell-function 'ignore)
-(global-linum-mode t)
-(setq inhibit-startup-screen t)
 ;;(server-mode t)
 
 (setq tab-always-indent 'complete) ;; 在编辑的时候也可以补全
@@ -73,17 +71,11 @@
 
 (setq name "Joe")
 
-(global-set-key (kbd "C-d") 'help-command)
-(add-to-list 'help-event-list '4)
-
 (func)
 
 (global-set-key (kbd "<f2>") 'func)
 
 ;; lispy s-expression introduce later
-
-(electric-pair-mode t)
-(toggle-frame-maximized) ;; 最大化画面
 
 ;; mode line
 ;; eldoc-mode 会在 mini-buffer 告诉你函数签名
@@ -120,14 +112,6 @@
 (define-key company-active-map (kbd "C-p") 'company-select-previous)
 (define-key company-active-map (kbd "C-n") 'company-select-next)
 
-
-(global-set-key (kbd "C-h C-f") 'find-function)
-(global-set-key (kbd "C-h C-v") 'find-variable)
-(global-set-key (kbd "C-h C-k") 'find-function-on-key)
-
-;; 关闭备份文件
-(setq make-backup-files nil)
-
 ;; 更改显示字体大小 16pt
 ;; http://stackoverflow.com/questions/294664/how-to-set-the-font-size-in-emacs
 ;;(set-face-attribute 'default nil :height 160)
@@ -135,8 +119,6 @@
 ;;让鼠标滚动更好用
 ;;(setq mouse-wheel-scroll-amount '(1 ((shift) . 1) ((control) . nil)))
 ;;(setq mouse-wheel-progressive-speed nil)
-
-(show-paren-mode t)
 
 ;; 开启 Tab
 (add-to-list 'load-path (expand-file-name "~/.emacs.d/elpa/awesome-tab"))
