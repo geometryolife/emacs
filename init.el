@@ -10,6 +10,7 @@
 (require 'init-better-default)
 (require 'init-elpa)
 (require 'init-org)
+(require 'init-company)
 
 (package-install 'company)
 
@@ -99,13 +100,6 @@
 ;; REPL read eval print loop -> Happy Hacking
 ;; C-x C-h => 显示 C-x 绑定的所有快捷键
 ;; 同理 C-x C-h ...
-
-(global-company-mode t)
-(setq company-minimum-prefix-length 1)
-(setq company-idle-delay 0)
-;; 定义 company-mode 的键映射
-(define-key company-active-map (kbd "C-p") 'company-select-previous)
-(define-key company-active-map (kbd "C-n") 'company-select-next)
 
 ;; 更改显示字体大小 16pt
 ;; http://stackoverflow.com/questions/294664/how-to-set-the-font-size-in-emacs
