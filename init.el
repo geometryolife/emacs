@@ -82,11 +82,6 @@
 ;; C-h m ->
 ;; font-lock-mode 开启语法高亮
 
-;; 关闭工具栏，这是 minor-mode
-;;(tool-bar-mode -1)
-;; 关闭文件滑动控件
-;;(scroll-bar-mode -1)
-
 ;; 更改光标的样式（不能生效，解决方案见第二集）
 ;; (setq cursor-type 'hollow) ;; 缓冲区
 ;; (setq-default cursor-type 'box) ;; 全局
@@ -289,7 +284,6 @@ Supports exporting consult-grep to wgrep, file to wdeired, and consult-location 
 ;;
 ;;  (global-set-key (kbd "s-p") 'toggle-chinese-search) ;; 默认关闭，需要时打开
 
-(global-hl-line-mode t)
 (package-install 'monokai-theme)
 (load-theme 'monokai t)
 
