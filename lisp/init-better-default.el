@@ -1,6 +1,7 @@
 (setq ring-bell-function 'ignore)
 (setq inhibit-startup-screen t)
 (setq make-backup-files nil)
+(setq-default tab-width 4)
 (menu-bar-mode -1)
 (when window-system
   (scroll-bar-mode -1)
