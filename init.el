@@ -12,32 +12,25 @@
 (require 'init-org)
 (require 'init-company)
 
-(package-install 'company)
 
 ;;modeline上显示我的所有的按键和执行的命令
-(package-install 'keycast)
-(keycast-mode t)
+;;(keycast-mode t)
 
 ;; 增强 minibuffer 补全：vertico 和 Orderless
-(package-install 'vertico)
 (vertico-mode t)
 
 ;; 无序搜索增强，配置 Marginalia 增强 minubuffer 的 annotation
-(package-install 'orderless)
 (setq completion-styles '(orderless))
 
 ;; 不用进入变量，在minibuffer就可以预览变量值
-(package-install 'marginalia)
 (marginalia-mode t)
 
-(package-install 'embark)
 (global-set-key (kbd "<f8>") 'embark-act) ;; 告诉函数绑定的快捷键
 (setq prefix-help-command 'embark-prefix-help-command) ;; C-key C-h ...
 
 ;; 找到描述变量，<f8>，根据提示选项操作
 
 ;; 增强文件内搜索和跳转函数定义：Consult
-(package-install 'consult)
 ;;replace swiper
 (global-set-key (kbd "C-s") 'consult-line)
 ;;M-x consult-imenu

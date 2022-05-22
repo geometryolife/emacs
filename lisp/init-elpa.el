@@ -10,4 +10,12 @@
 (when (not package-archive-contents)
   (package-refresh-contents))
 
+(package-install 'company)
+(package-install 'keycast)
+(package-install 'vertico)
+(package-install 'orderless)
+(package-install 'marginalia)
+(package-install 'embark)
+(package-install 'consult)
+(package-install 'markdown-mode)
 (provide 'init-elpa)
