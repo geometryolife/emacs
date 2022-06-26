@@ -10,12 +10,34 @@
 (when (not package-archive-contents)
   (package-refresh-contents))
 
-(package-install 'company)
-(package-install 'keycast)
-(package-install 'vertico)
-(package-install 'orderless)
-(package-install 'marginalia)
-(package-install 'embark)
-(package-install 'consult)
-(package-install 'markdown-mode)
+;;(package-install 'markdown-mode)
+
+;; common lisp
+(require 'cl)
+(defvar melpa-include-packages '(
+								 company
+								 keycast
+								 vertico
+								 orderless
+								 marginalia
+								 embark
+								 consult
+								 hungry-delete
+								 )
+  "Default packages")
+
+(setq package-selected-packages melpa-include-packages)
+
+(defun geoemacs-packages-installed-p ()
+  (loop for pkg in melpa-include-packages
+		when (not (package-installed-p pkg)) do (return nil)
+		finally (return t)))
+
+(unless (geoemacs-packages-installed-p)
+  (message "%s" "Refreshing package database...")
+  (package-refresh-contents)
+  (dolist (pkg melpa-include-packages)
+	(when (not (package-installed-p pkg))
+	  (package-install pkg))))
+
 (provide 'init-elpa)

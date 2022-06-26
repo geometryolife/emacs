@@ -11,7 +11,7 @@
 (require 'init-elpa)
 (require 'init-org)
 (require 'init-company)
-
+(require 'org-tempo)
 
 ;;modeline上显示我的所有的按键和执行的命令
 ;;(keycast-mode t)
@@ -141,16 +141,14 @@ Other buffer group by `awesome-tab-get-group-name' with project name."
 ;;(print '(+ 1 1)) ;; -> (+ 1 1)
 ;;(print (+ 1 1))  ;; -> 2
 
-(require 'recentf)
+;;(require 'recentf)
 (recentf-mode 1)
-(setq recentf-max-menu-item 10)
+;;(setq recentf-max-menu-item 10)
 
 ;; 这个快捷键绑定可以用之后的插件 counsel 代替
 ;; (global-set-key (kbd "C-x C-r") 'recentf-open-files)
 
 (global-set-key (kbd "C-x b") 'consult-buffer)
-
-(delete-selection-mode t)
 
 ;; (shell-command-to-string "explorer.exe C:\\") ;; 打开C盘
 ;; (shell-command-to-string "explorer.exe ~/.emacs.d")
@@ -273,6 +271,9 @@ Supports exporting consult-grep to wgrep, file to wdeired, and consult-location 
 
 (package-install 'monokai-theme)
 (load-theme 'monokai t)
+
+(require 'hungry-delete)
+(global-hungry-delete-mode)
 
 (setq custom-file (expand-file-name "~/.emacs.d/custom.el"))
 (load custom-file 'no-error 'no-message)

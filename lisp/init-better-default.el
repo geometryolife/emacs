@@ -8,6 +8,7 @@
   (tool-bar-mode -1))
 (global-linum-mode t)
 (global-hl-line-mode t)
+(delete-selection-mode t)
 
 (global-set-key (kbd "C-d") 'help-command)
 (add-to-list 'help-event-list '4)
@@ -20,7 +21,8 @@
 (global-set-key (kbd "C-d C-f") 'find-function)
 (global-set-key (kbd "C-d C-k") 'find-function-on-key)
 
-(show-paren-mode t)
+;;(show-paren-mode t)
+(add-hook 'emacs-lisp-mode-hook 'show-paren-mode)
 ;;(fset 'yes-or-no-p 'y-or-n-p)
 
 (provide 'init-better-default)
