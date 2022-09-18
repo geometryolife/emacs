@@ -23,6 +23,11 @@
 								 embark
 								 consult
 								 hungry-delete
+								 ;;smartparens
+								 ;;markdown-mode
+								 rust-mode
+								 ;;eglot
+								 lsp-mode
 								 )
   "Default packages")
 

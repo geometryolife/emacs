@@ -12,6 +12,7 @@
 (require 'init-org)
 (require 'init-company)
 (require 'org-tempo)
+(require 'init-rust)
 
 ;;modeline上显示我的所有的按键和执行的命令
 ;;(keycast-mode t)
@@ -272,8 +273,11 @@ Supports exporting consult-grep to wgrep, file to wdeired, and consult-location 
 (package-install 'monokai-theme)
 (load-theme 'monokai t)
 
+;; 增强delete
 (require 'hungry-delete)
 (global-hungry-delete-mode)
+;; 括号匹配
+;;(require 'smartparens-config)
 
 (setq custom-file (expand-file-name "~/.emacs.d/custom.el"))
 (load custom-file 'no-error 'no-message)
