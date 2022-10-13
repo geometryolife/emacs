@@ -28,6 +28,8 @@
 								 rust-mode
 								 eglot
 								 ;;lsp-mode
+								 pyim
+								 ;;pyim-basedict
 								 )
   "Default packages")
 

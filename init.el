@@ -13,6 +13,7 @@
 (require 'init-company)
 (require 'org-tempo)
 (require 'init-rust)
+(require 'init-pyim)
 
 ;;modeline上显示我的所有的按键和执行的命令
 ;;(keycast-mode t)
