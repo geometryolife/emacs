@@ -15,6 +15,10 @@
 (global-set-key (kbd "C-h") 'backward-delete-char-untabify)
 (global-set-key (kbd "M-d") 'delete-char)
 (global-set-key (kbd "M-D") 'kill-word)
+(global-set-key (kbd "C-w") 'backward-kill-word)
+(global-set-key (kbd "M-W") 'kill-region)
+(global-set-key (kbd "M-s m") 'set-mark-command)
+
 (electric-pair-mode t)
 (toggle-frame-maximized)
 (global-set-key (kbd "C-d C-v") 'find-variable)
