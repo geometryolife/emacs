@@ -105,9 +105,9 @@
 ;;(setq mouse-wheel-progressive-speed nil)
 
 ;; 开启 Tab
-(add-to-list 'load-path (expand-file-name "~/.emacs.d/elpa/awesome-tab"))
-(require 'awesome-tab)
-(awesome-tab-mode t)
+;;(add-to-list 'load-path (expand-file-name "~/.emacs.d/elpa/awesome-tab"))
+;;(require 'awesome-tab)
+;;(awesome-tab-mode t)
 
 (defun awesome-tab-buffer-groups ()
 "`awesome-tab-buffer-groups' control buffers' group rules.
@@ -271,8 +271,10 @@ Supports exporting consult-grep to wgrep, file to wdeired, and consult-location 
 ;;
 ;;  (global-set-key (kbd "s-p") 'toggle-chinese-search) ;; 默认关闭，需要时打开
 
-(package-install 'monokai-theme)
-(load-theme 'monokai t)
+;;(package-install 'monokai-theme)
+;;(load-theme 'monokai t)
+(package-install 'doom-themes)
+(load-theme 'doom-one t)
 
 ;; 增强delete
 (require 'hungry-delete)
