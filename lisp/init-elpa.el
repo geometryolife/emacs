@@ -1,3 +1,4 @@
+;; Emacs Lisp Package Archive
 (require 'package)
 (setq package-archives
       '(

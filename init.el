@@ -34,9 +34,6 @@
 
 ;; 增强文件内搜索和跳转函数定义：Consult
 ;;replace swiper
-(global-set-key (kbd "C-s") 'consult-line)
-;;M-x consult-imenu
-(global-set-key (kbd "M-s i") 'consult-imenu)
 
 ;;在文件最开头添加地个 文件作用域的变量设置，设置变量的绑定方式
 ;; -*- lexical-binding: t -*-
@@ -149,8 +146,6 @@ Other buffer group by `awesome-tab-get-group-name' with project name."
 
 ;; 这个快捷键绑定可以用之后的插件 counsel 代替
 ;; (global-set-key (kbd "C-x C-r") 'recentf-open-files)
-
-(global-set-key (kbd "C-x b") 'consult-buffer)
 
 ;; (shell-command-to-string "explorer.exe C:\\") ;; 打开C盘
 ;; (shell-command-to-string "explorer.exe ~/.emacs.d")
