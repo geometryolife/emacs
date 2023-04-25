@@ -1,4 +1,4 @@
-;;(require 'org-tempo)  ;开启easy template
+(require 'org-tempo)  ;开启easy template
 
 ;; 禁用左尖括号
 ;;(setq electric-pair-inhibit-predicate

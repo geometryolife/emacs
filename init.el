@@ -11,10 +11,10 @@
 (require 'init-elpa)
 (require 'init-org)
 (require 'init-company)
-(require 'org-tempo)
 (require 'init-rust)
 (require 'init-pyim)
 (require 'init-consult)
+(require 'init-embark)
 
 ;;modeline上显示我的所有的按键和执行的命令
 ;;(keycast-mode t)
@@ -28,7 +28,6 @@
 ;; 不用进入变量，在minibuffer就可以预览变量值
 (marginalia-mode t)
 
-(global-set-key (kbd "<f8>") 'embark-act) ;; 告诉函数绑定的快捷键
 (setq prefix-help-command 'embark-prefix-help-command) ;; C-key C-h ...
 
 ;; 找到描述变量，<f8>，根据提示选项操作
