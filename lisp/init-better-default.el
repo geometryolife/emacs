@@ -41,7 +41,7 @@
 (global-set-key (kbd "C-d C-k") 'find-function-on-key)
 
 ;; Add an additional key binding to toggle-frame-fullscreen
-(global-set-key (kbd "M-s y") 'toggle-frame-fullscreen)
+(global-set-key (kbd "M-s f") 'toggle-frame-fullscreen)
 
 ;; Quickly open the init.el file
 (defun open-init-file()
