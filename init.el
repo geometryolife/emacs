@@ -15,6 +15,7 @@
 (require 'init-pyim)
 (require 'init-consult)
 (require 'init-embark)
+;;(require 'posframe)
 
 ;;modeline上显示我的所有的按键和执行的命令
 ;;(keycast-mode t)
@@ -78,13 +79,6 @@
 ;; 更改光标的样式（不能生效，解决方案见第二集）
 ;; (setq cursor-type 'hollow) ;; 缓冲区
 ;; (setq-default cursor-type 'box) ;; 全局
-
-;; 快速打开配置文件
-(defun open-init-file()
-  (interactive)
-  (find-file "~/.emacs.d/init.el"))
-;; 将 open-init-file 函数绑定到 <f9> 键上
-(global-set-key (kbd "<f9>") 'open-init-file)
 
 ;; 重新加载配置文件 M-x load-file
 ;; 执行当前缓冲区所有 Lisp 命令 M-x eval-buffer
