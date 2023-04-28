@@ -11,13 +11,11 @@
 (when (not package-archive-contents)
   (package-refresh-contents))
 
-;;(package-install 'markdown-mode)
-
 ;; common lisp
 (require 'cl)
 (defvar melpa-include-packages '(
 								 company
-								 keycast
+								 ;;keycast
 								 vertico
 								 orderless
 								 marginalia
@@ -25,12 +23,14 @@
 								 consult
 								 hungry-delete
 								 ;;smartparens
-								 ;;markdown-mode
-								 rust-mode
-								 eglot
+								 ;;rust-mode
+								 ;;eglot
 								 ;;lsp-mode
 								 pyim
 								 ;;pyim-basedict
+								 posframe
+								 markdown-mode
+								 ;;yasnippet
 								 )
   "Default packages")
 
