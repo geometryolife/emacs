@@ -14,6 +14,7 @@
 ;; common lisp
 (require 'cl)
 (defvar melpa-include-packages '(
+								 magit
 								 company
 								 ;;keycast
 								 vertico
@@ -30,7 +31,7 @@
 								 ;;pyim-basedict
 								 posframe
 								 markdown-mode
-								 ;;yasnippet
+								 yasnippet
 								 )
   "Default packages")
 

@@ -16,6 +16,7 @@
 (require 'init-pyim)
 (require 'init-consult)
 (require 'init-embark)
+(require 'init-yasnippet)
 ;;(require 'posframe)
 
 ;;modeline上显示我的所有的按键和执行的命令
