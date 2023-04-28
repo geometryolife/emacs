@@ -11,13 +11,13 @@
 (require 'init-elpa)
 (require 'init-org)
 (require 'init-markdown-mode)
-(require 'init-company)
+;;(require 'init-company)
 ;;(require 'init-rust)
 (require 'init-pyim)
 (require 'init-consult)
 (require 'init-embark)
 (require 'init-yasnippet)
-;;(require 'posframe)
+(require 'init-lsp-bridge)
 
 ;;modeline上显示我的所有的按键和执行的命令
 ;;(keycast-mode t)
