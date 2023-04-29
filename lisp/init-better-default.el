@@ -45,6 +45,13 @@
 ;; Add an additional key binding to toggle-frame-fullscreen
 (global-set-key (kbd "M-s f") 'toggle-frame-fullscreen)
 
+;; Create the meta-m-map, make the M-m to a prefix key
+(define-prefix-command 'meta-m-map)
+(global-set-key (kbd "M-m") 'meta-m-map)
+
+;; Remap back-to-indentation (M-m) as (M-m m m)
+(global-set-key (kbd "M-m m m") 'back-to-indentation)
+
 ;; Quickly open the init.el file
 (defun open-init-file()
   (interactive)
