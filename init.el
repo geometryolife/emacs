@@ -18,6 +18,7 @@
 (require 'init-embark)
 (require 'init-yasnippet)
 (require 'init-lsp-bridge)
+(require 'init-move-mode)
 
 ;;modeline上显示我的所有的按键和执行的命令
 ;;(keycast-mode t)
