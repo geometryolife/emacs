@@ -2,18 +2,20 @@
 (setq make-backup-files nil)
 (setq ring-bell-function 'ignore)
 
+(setq-default cursor-type '(bar . 5))
+(setq-default tab-width 4)
+
 (menu-bar-mode -1)
 (when window-system
   (scroll-bar-mode -1)
   (tool-bar-mode -1))
 (electric-pair-mode t)
 (add-hook 'emacs-lisp-mode-hook 'show-paren-mode)
+(column-number-mode t)
 
 (delete-selection-mode t)
 (global-hl-line-mode t)
 (global-linum-mode t)
-(setq-default cursor-type '(bar . 5))
-(setq-default tab-width 4)
 
 (toggle-frame-maximized)
 ;;(fset 'yes-or-no-p 'y-or-n-p)
