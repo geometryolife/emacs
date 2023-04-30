@@ -1,5 +1,5 @@
 ;;  A blazingly fast LSP client for Emacs
-(add-to-list 'load-path "~/.emacs.d/elpa/lsp-bridge")
+(add-to-list 'load-path "~/i/lsp-bridge")
 
 (require 'lsp-bridge)
 (global-lsp-bridge-mode)

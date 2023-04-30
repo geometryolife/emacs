@@ -20,6 +20,9 @@
 (require 'init-lsp-bridge)
 (require 'init-move-mode)
 
+;; Fix magit issue: (void-function cursor-sensor-move-to-tangible) after 3224b17 #4931 
+(require 'cursor-sensor)
+
 ;;modeline上显示我的所有的按键和执行的命令
 ;;(keycast-mode t)
 
