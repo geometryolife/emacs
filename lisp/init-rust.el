@@ -4,4 +4,7 @@
 (add-hook 'rust-mode-hook
           (lambda () (setq indent-tabs-mode nil)))
 
+;; Code formatting - enables automatic formatting on save
+(setq rust-format-on-save t)
+
 (provide 'init-rust)
