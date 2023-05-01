@@ -18,6 +18,7 @@
 (global-linum-mode t)
 
 (toggle-frame-maximized)
+(toggle-frame-fullscreen)
 ;;(fset 'yes-or-no-p 'y-or-n-p)
 
 ;; Change C-d to help-command prefix
