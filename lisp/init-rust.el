@@ -1,6 +1,7 @@
 (require 'rust-mode)
-(add-hook 'rust-mode-hook 'eglot-ensure)
-;;(require 'lsp-mode)
-;;(add-hook 'rust-mode-hook #'lsp-deferred)
+
+;; The Rust style guide recommends spaces rather than tabs for indentation
+(add-hook 'rust-mode-hook
+          (lambda () (setq indent-tabs-mode nil)))
 
 (provide 'init-rust)

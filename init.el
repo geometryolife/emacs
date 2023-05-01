@@ -12,7 +12,7 @@
 (require 'init-org)
 (require 'init-markdown-mode)
 ;;(require 'init-company)
-;;(require 'init-rust)
+(require 'init-rust)
 (require 'init-pyim)
 (require 'init-consult)
 (require 'init-embark)

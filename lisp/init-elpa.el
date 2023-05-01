@@ -24,7 +24,7 @@
 								 consult
 								 hungry-delete
 								 ;;smartparens
-								 ;;rust-mode
+								 rust-mode
 								 ;;eglot
 								 ;;lsp-mode
 								 pyim
