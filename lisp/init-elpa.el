@@ -32,6 +32,7 @@
 								 posframe
 								 markdown-mode
 								 yasnippet
+								 youdao-dictionary
 								 )
   "Default packages")
 

@@ -19,6 +19,7 @@
 (require 'init-yasnippet)
 (require 'init-lsp-bridge)
 (require 'init-move-mode)
+(require 'init-youdao-dictionary)
 
 ;; Fix magit issue: (void-function cursor-sensor-move-to-tangible) after 3224b17 #4931 
 (require 'cursor-sensor)
