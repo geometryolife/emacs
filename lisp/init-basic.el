@@ -60,4 +60,4 @@
 (global-set-key (kbd "C-d ;") 'open-init-file)
 
 
-(provide 'init-better-default)
+(provide 'init-basic)

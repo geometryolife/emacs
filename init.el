@@ -7,7 +7,7 @@
 
 (add-to-list 'load-path "~/.emacs.d/lisp")
 
-(require 'init-better-default)
+(require 'init-basic)
 (require 'init-elpa)
 (require 'init-org)
 (require 'init-markdown-mode)
