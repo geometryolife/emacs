@@ -278,5 +278,46 @@ Supports exporting consult-grep to wgrep, file to wdeired, and consult-location 
 ;; 括号匹配
 ;;(require 'smartparens-config)
 
+;; 宏与函数的区别
+;;(setq my-var 1)
+;;(setq my-var (1+ my-var))
+;; 使用宏实现上面的功能
+;;(defmacro inc (var)
+;;  (list 'setq var (list '1+ var)))
+
+;;(inc my-var)
+;;(macroexpand '(inc my-var)) ; DSL
+
+;; 函数无法实现 pass by value
+;;(defun inc-2 (var)
+;;  (setq var (1+ var)))
+
+;; (inc-2 my-var)
+
+;; Backquote allows you to:
+
+;; quote a list, and
+;; selectively evaluate elements of the list (with comma ,), or:
+;; splice (eval & spread) the element with ,@
+
+;; , 号可以动态求值
+;; `(a list of ,(+ 2 3) elements)
+;; (a list of 5 elements)
+
+;; '(a list of ,(+ 2 3) elements)
+;; (a list of (\, (+ 2 3)) elements)
+
+;; `(a list of (+ 2 3) elements)
+;; (a list of (+ 2 3) elements)
+
+;; '(a list of (+ 2 3) elements)
+;; (a list of (+ 2 3) elements)
+
+;; ,@ 组合符号
+;; (setq some-list '(2 3))
+;; 展开列表成元素
+;; `(1 ,@some-list 4 ,@some-list) ; form
+;; (1 2 3 4 2 3)
+
 (setq custom-file (expand-file-name "~/.emacs.d/custom.el"))
 (load custom-file 'no-error 'no-message)
