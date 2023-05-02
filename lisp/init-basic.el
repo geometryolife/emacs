@@ -16,6 +16,7 @@
 (delete-selection-mode t)
 (global-hl-line-mode t)
 (global-linum-mode t)
+(global-auto-revert-mode t)
 
 (toggle-frame-maximized)
 (toggle-frame-fullscreen)
