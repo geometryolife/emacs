@@ -20,6 +20,11 @@
 (require 'init-lsp-bridge)
 (require 'init-move-mode)
 (require 'init-youdao-dictionary)
+;;(pp (macroexpand '(use-package init-xxx)))
+
+(use-package restart-emacs
+  :ensure t
+  :bind ("M-s r" . restart-emacs))
 
 ;; Fix magit issue: (void-function cursor-sensor-move-to-tangible) after 3224b17 #4931 
 (require 'cursor-sensor)

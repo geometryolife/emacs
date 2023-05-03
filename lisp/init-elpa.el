@@ -11,16 +11,25 @@
 (when (not package-archive-contents)
   (package-refresh-contents))
 
+;;(require 'use-package-ensure)
+;;(setq use-package-always-ensure t)
+
+;; Setup `use-package'
+(unless (package-installed-p 'use-package)
+  (package-refresh-contents)
+  (package-install 'use-package))
+
+
 ;; common lisp
 (require 'cl)
 (defvar melpa-include-packages '(
 								 magit
+								 use-package
 								 company
 								 ;;keycast
 								 vertico
 								 orderless
 								 marginalia
-								 embark
 								 consult
 								 hungry-delete
 								 ;;smartparens
