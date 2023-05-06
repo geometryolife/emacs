@@ -26,6 +26,27 @@
   :ensure t
   :bind ("M-s r" . restart-emacs))
 
+(use-package atomic-chrome
+  :ensure t
+  :config (atomic-chrome-start-server))
+
+(use-package savehist
+  :ensure nil
+  :hook (after-init . savehist-mode)
+  :init (setq enable-recursive-minibuffers t ; Allow commands in minibuffers
+			  history-length 1000
+			  savehist-additional-variables '(mark-ring
+											  global-mark-ring
+											  search-ring
+											  regexp-search-ring
+											  extended-command-history)
+			  savehist-autosave-interval 300))
+
+(use-package saveplace
+  :ensure nil
+  :hook (after-init . save-place-mode))
+
+
 ;; Fix magit issue: (void-function cursor-sensor-move-to-tangible) after 3224b17 #4931 
 (require 'cursor-sensor)
 
