@@ -11,4 +11,8 @@
 ;;			'(lambda (c)
 ;;			   (if (char-equal c ?\<) t (,electric-pair-inhibit-predicate c))))))
 
+(setq org-todo-keywords
+      (quote ((sequence "TODO(t)" "STARTED(s)" "|" "DONE(d!/!)")
+			  (sequence "WAITING(w@/!)" "SOMEDAY(S)" "|" "CANCELLED(c@/!)" "MEETING(m)" "PHONE(p)"))))
+
 (provide 'init-org)
