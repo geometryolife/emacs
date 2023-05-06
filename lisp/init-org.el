@@ -15,4 +15,10 @@
       (quote ((sequence "TODO(t)" "STARTED(s)" "|" "DONE(d!/!)")
 			  (sequence "WAITING(w@/!)" "SOMEDAY(S)" "|" "CANCELLED(c@/!)" "MEETING(m)" "PHONE(p)"))))
 
+;; C-c C-s schedule
+;; C-c C-d deadline
+(global-set-key (kbd "C-c a") 'org-agenda)
+(setq org-agenda-files '("~/gtd.org"))
+(setq org-agenda-span 'day)
+
 (provide 'init-org)
