@@ -20,6 +20,7 @@
 (require 'init-lsp-bridge)
 (require 'init-move-mode)
 (require 'init-youdao-dictionary)
+(require 'init-eaf)
 ;;(pp (macroexpand '(use-package init-xxx)))
 
 (use-package restart-emacs
