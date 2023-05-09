@@ -20,7 +20,7 @@
 
 (toggle-frame-maximized)
 (toggle-frame-fullscreen)
-;;(fset 'yes-or-no-p 'y-or-n-p)
+(fset 'yes-or-no-p 'y-or-n-p)
 
 ;; Change C-d to help-command prefix
 ;;(global-set-key (kbd "C-d") help-map)
