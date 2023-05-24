@@ -3,6 +3,7 @@
 (setq package-archives
       '(
         ("gnu" . "https://elpa.gnu.org/packages/")
+        ;; ("nongnu" . "http%s://elpa.nongnu.org/nongnu/")
         ("melpa" . "https://melpa.org/packages/")))
 
 (package-initialize)

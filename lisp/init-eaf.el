@@ -3,5 +3,6 @@
 (require 'eaf-demo)
 (require 'eaf-browser)
 (require 'eaf-file-manager)
+(require 'eaf-markdown-previewer)
 
 (provide 'init-eaf)
